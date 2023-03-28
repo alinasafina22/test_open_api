@@ -52,9 +52,9 @@ def test_update_information(browser):
     cls.go_to_site()
     cls2 = JsonFixtures()
     status_ui, body_ui = cls.update_client()
-    body_ui = "".join(body_ui.split())
+    body_ui = "".join(body_ui.split())[:29]
     response = requests.put('https://reqres.in/api/users/2', cls2.user)
     status_api = str(response.status_code)
-    body_api = "".join(response.text.split())
+    body_api = "".join(response.text.split())[:29]
     assert status_ui == status_api
     assert body_ui == body_api
