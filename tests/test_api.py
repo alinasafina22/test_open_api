@@ -3,11 +3,12 @@ import pytest
 from utils.json_fixtures import JsonFixtures
 
 
+@pytest.mark.api
 class TestApi(object):
     cls = JsonFixtures()
 
     # тест для get запроса single user/not found
-    @pytest.mark.api
+
     @pytest.mark.parametrize("api_request, expected_status, expected_body",
                              [('/api/users/2', 200, cls.get_user_expected_body),
                               ('/api/users/23', 404, {})])
@@ -19,7 +20,7 @@ class TestApi(object):
         assert body == expected_body
 
     # тест register - successful
-    @pytest.mark.api
+
     @pytest.mark.parametrize("person,status_expected, body_expected", [
         (
                 {"email": "eve.holt@reqres.in", "password": "pistol"},
@@ -39,7 +40,6 @@ class TestApi(object):
         assert status == status_expected, f"Фактический статус {status}, ожидаемый статус {status_expected}"
         assert body == body_expected
 
-    @pytest.mark.api
     def test_update_user(self):
         user = self.cls.user
         update_user = requests.put('https://reqres.in/api/users/2', user)
