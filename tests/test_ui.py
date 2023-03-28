@@ -4,6 +4,7 @@ import requests
 from utils.json_fixtures import JsonFixtures
 
 
+@pytest.mark.ui
 def test_get_single_user(browser):
     cls = MainPage(browser)
     cls.go_to_site()
@@ -16,6 +17,7 @@ def test_get_single_user(browser):
     assert body_ui == body_api
 
 
+@pytest.mark.ui
 def test_get_user_negative(browser):
     cls = MainPage(browser)
     cls.go_to_site()
@@ -28,6 +30,7 @@ def test_get_user_negative(browser):
     assert body_ui == body_api
 
 
+@pytest.mark.ui
 def test_register_positive(browser):
     cls = MainPage(browser)
     cls.go_to_site()
