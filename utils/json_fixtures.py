@@ -1,5 +1,4 @@
 
-
 class JsonFixtures:
     get_user_expected_body = {
         "data": {
@@ -20,6 +19,5 @@ class JsonFixtures:
     }
     register_data = {"email": "eve.holt@reqres.in", "password": "pistol"}
     negative_data = {"email": "sydney@fife"}
-
-
-
+    expected_register = {'id': 4, 'token': 'QpwL5tke4Pnpja7X4'}
+    expected_negative = {'error': 'Missing password'}

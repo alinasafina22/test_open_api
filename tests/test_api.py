@@ -23,20 +23,21 @@ class TestApi(object):
 
     @pytest.mark.parametrize("person,status_expected, body_expected", [
         (
-                {"email": "eve.holt@reqres.in", "password": "pistol"},
+                JsonFixtures.register_data,
                 200,
-                '{"id":4,"token":"QpwL5tke4Pnpja7X4"}'
+                JsonFixtures.expected_register
+
         ),
         (
-                {"email": "sydney@fife"},
+                JsonFixtures.negative_data,
                 400,
-                '{"error":"Missing password"}'
+                JsonFixtures.expected_negative
         )
     ])
     def test_register_user(self, person, status_expected, body_expected):
         post_register = requests.post('https://reqres.in/api/register', person)
         status = post_register.status_code
-        body = post_register.text
+        body = post_register.json()
         assert status == status_expected, f"Фактический статус {status}, ожидаемый статус {status_expected}"
         assert body == body_expected
 
