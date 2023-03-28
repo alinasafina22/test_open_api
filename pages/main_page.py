@@ -6,7 +6,6 @@ from time import sleep
 
 
 class UiLocators:
-
     # selectors
     get_single_user_btn = (By.CSS_SELECTOR, '[data-id="users-single"]')
     get_single_not_found_btn = (By.CSS_SELECTOR, '[data-id="users-single-not-found"]')
@@ -57,6 +56,17 @@ class MainPage(BasePage):
     def register_unsuccessful(self):
         post_btn = self.find_element(UiLocators.post_register_unsuccessful_btn)
         post_btn.click()
+        sleep(1)
+        status_code = self.find_element(UiLocators.response_code_txt)
+        status = status_code.text
+        body_txt = self.find_element(UiLocators.response_body_txt)
+        body = body_txt.text
+        ' '.join(body.split())
+        return status, body
+
+    def update_client(self):
+        update_btn = self.find_element(UiLocators.put_update_btn)
+        update_btn.click()
         sleep(1)
         status_code = self.find_element(UiLocators.response_code_txt)
         status = status_code.text

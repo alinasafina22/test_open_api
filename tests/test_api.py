@@ -1,26 +1,15 @@
 import requests
 import pytest
+from utils.json_fixtures import JsonFixtures
 
 
 class TestApi(object):
-    get_user_expected_body = {
-        "data": {
-            "id": 2,
-            "email": "janet.weaver@reqres.in",
-            "first_name": "Janet",
-            "last_name": "Weaver",
-            "avatar": "https://reqres.in/img/faces/2-image.jpg"
-        },
-        "support": {
-            "url": "https://reqres.in/#support-heading",
-            "text": "To keep ReqRes free, contributions towards server costs are appreciated!"
-        }
-    }
+    cls = JsonFixtures()
 
     # тест для get запроса single user/not found
     @pytest.mark.parametrize("api_request, expected_status, expected_body",
-                             [('/api/users/2', 200, get_user_expected_body),
-                             ('/api/users/23', 404, {})])
+                             [('/api/users/2', 200, cls.get_user_expected_body),
+                              ('/api/users/23', 404, {})])
     def test_get_user(self, api_request, expected_status, expected_body):
         get_list_users = requests.get(f'https://reqres.in{api_request}')
         status = get_list_users.status_code
@@ -50,10 +39,7 @@ class TestApi(object):
         return status, body
 
     def test_update_user(self):
-        user = {
-            "name": "morpheus",
-            "job": "zion resident"
-        }
+        user = self.cls.user
         update_user = requests.put('https://reqres.in/api/users/2', user)
         status = update_user.status_code
         name_user = update_user.json()["name"]
