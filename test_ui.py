@@ -25,3 +25,4 @@ def test_get_user_negative(browser):
     body_api = "".join(response.text.split())
     assert status_ui == status_api
     assert body_ui == body_api
+
