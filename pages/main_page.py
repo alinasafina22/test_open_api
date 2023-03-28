@@ -1,7 +1,7 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from Base import BasePage
+from pages.base_page import BasePage
 from time import sleep
 
 
@@ -19,7 +19,7 @@ class UiLocators:
     response_body_txt = (By.CSS_SELECTOR, '[data-key="output-response"]')
 
 
-class TestUI(BasePage):
+class MainPage(BasePage):
 
     def get_single_user(self):
         get_click_btn = self.find_element(UiLocators.get_single_user_btn)

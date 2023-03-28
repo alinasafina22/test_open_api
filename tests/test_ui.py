@@ -1,10 +1,10 @@
-from page import TestUI
+from pages.main_page import MainPage
 import pytest
 import requests
 
 
 def test_get_single_user(browser):
-    cls = TestUI(browser)
+    cls = MainPage(browser)
     cls.go_to_site()
     status_ui, body_ui = cls.get_single_user()
     body_ui = "".join(body_ui.split())
@@ -16,7 +16,7 @@ def test_get_single_user(browser):
 
 
 def test_get_user_negative(browser):
-    cls = TestUI(browser)
+    cls = MainPage(browser)
     cls.go_to_site()
     status_ui, body_ui = cls.get_user_not_found()
     body_ui = "".join(body_ui.split())
