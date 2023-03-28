@@ -8,5 +8,7 @@ https://reqres.in/ - Открытое API
 
 Для запуска тестов:
 pytest -n auto - запускает все тесты
+
 python -m pytest -n=2 -m ui tests - только ui
+
 python -m pytest -n=2 -m api tests/ - только api
