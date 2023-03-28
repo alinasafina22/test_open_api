@@ -1,6 +1,6 @@
 
 
-class JsonFixtures():
+class JsonFixtures:
     get_user_expected_body = {
         "data": {
             "id": 2,
@@ -19,4 +19,7 @@ class JsonFixtures():
         "job": "zion resident"
     }
     register_data = {"email": "eve.holt@reqres.in", "password": "pistol"}
+    negative_data = {"email": "sydney@fife"}
+
+
 
