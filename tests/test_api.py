@@ -5,12 +5,11 @@ from utils.json_fixtures import JsonFixtures
 
 @pytest.mark.api
 class TestApi(object):
-    cls = JsonFixtures()
 
     # тест для get запроса single user/not found
 
     @pytest.mark.parametrize("api_request, expected_status, expected_body",
-                             [('/api/users/2', 200, cls.get_user_expected_body),
+                             [('/api/users/2', 200, JsonFixtures.get_user_expected_body),
                               ('/api/users/23', 404, {})])
     def test_get_user(self, api_request, expected_status, expected_body):
         get_list_users = requests.get(f'https://reqres.in{api_request}')
@@ -42,7 +41,7 @@ class TestApi(object):
         assert body == body_expected
 
     def test_update_user(self):
-        user = self.cls.user
+        user = JsonFixtures.user
         update_user = requests.put('https://reqres.in/api/users/2', user)
         status = update_user.status_code
         name_user = update_user.json()["name"]
