@@ -38,7 +38,6 @@ class TestApi(object):
         body = post_register.text
         assert status == status_expected, f"Фактический статус {status}, ожидаемый статус {status_expected}"
         assert body == body_expected
-        return status, body
 
     @pytest.mark.api
     def test_update_user(self):
