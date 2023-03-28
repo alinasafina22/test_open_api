@@ -46,4 +46,15 @@ def test_register_positive(browser, function, input_data):
     assert body_ui == body_api
 
 
-
+@pytest.mark.ui
+def test_update_information(browser):
+    cls = MainPage(browser)
+    cls.go_to_site()
+    cls2 = JsonFixtures()
+    status_ui, body_ui = cls.update_client()
+    body_ui = "".join(body_ui.split())
+    response = requests.put('https://reqres.in/api/users/2', cls2.user)
+    status_api = str(response.status_code)
+    body_api = "".join(response.text.split())
+    assert status_ui == status_api
+    assert body_ui == body_api
